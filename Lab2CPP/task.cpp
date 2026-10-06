@@ -3,7 +3,9 @@
 #include <string>
 #include "stack.h"
 
-bool tryPush(Stack<int> &dest, int value) {
+typedef Stack<int> intStack;
+
+bool tryPush(intStack &dest, int value) {
     if (dest.empty() || value <= dest.get()) {
         dest.push(value);
         return true;
@@ -11,7 +13,7 @@ bool tryPush(Stack<int> &dest, int value) {
     return false;
 }
 
-void tryMove(Stack<int> &src, Stack<int> &dest) {
+void tryMove(intStack &src, intStack &dest) {
     if (src.empty()) return;
     int value = src.get();
     src.pop();
@@ -20,9 +22,9 @@ void tryMove(Stack<int> &src, Stack<int> &dest) {
     }
 }
 
-void printStack(const Stack<int> &s) {
-    Stack<int> copy = s;
-    Stack<int> reversed;
+void printStack(const intStack &s) {
+    intStack copy = s;
+    intStack reversed;
     while (!copy.empty()) {
         reversed.push(copy.get());
         copy.pop();
@@ -42,7 +44,7 @@ int main(int argc, char **argv) {
     char c;
     while (scriptFile.get(c)) script += c;
 
-    Stack<int> stack1, stack2, stack3;
+    intStack stack1, stack2, stack3;
 
     for (char c : script) {
         switch (c) {
